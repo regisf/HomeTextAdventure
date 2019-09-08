@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<place>
+    <name>Fronton de la maison</name>
+    <description>
+
+        Vous êtes devant la maison. Une allée de bitume va vers l'entrée de
+        la maison. Il y a un petit puit condamné surmonté d'un toit en tuile
+        d'argile a gauche et une haie à gauche.
+        Juste derrière la haie, un pommier aux pommes bien mure surplombe
+        légèrement l'allée lui donnant un peu d'ombre.
+        Au bout de l'allée, il y a une porte d'entrée en verre. Plus loin,
+        à gauche, un garage.
+    </description>
+
+    <action name="regarder">
+        <item name="garage">
+            Le garage se trouve à une courte distance. Un petit chemin de
+            pierre serpente dans le gazon pour s'y rendre.
+            Il y a deux boxes dans ce garage. Un ouvert, l'autre fermé à clef.
+        </item>
+
+        <item name="porte">
+            C'est une bête porte vitrée.
+        </item>
+    </action>
+
+    <action name="ouvrir" visible="no">
+        <default>
+            Vous voulez ouvrir quoi ?
+        </default>
+
+        <item name="porte">
+            Vous êtes trop loin pour ouvrir la porte
+        </item>
+    </action>
+
+    <goto name="porte" place="FrontDoor">
+        <alias name="porte d'entree"/>
+        <alias name="nothing"/>
+    </goto>
+
+    <goto name="garage" place="Garage"/>
+
+</place>

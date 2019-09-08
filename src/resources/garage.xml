@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<place>
+    <name>Garage</name>
+    <description>
+        Vous êtes devant le garage. Il y a deux compartiments. L'un avec une
+        porte fermée par un cadenas à double battant de bois peint en rouge,
+        l'autre sans porte.  Dans le compartiment sans porte, il y a une moto
+        rouge, dans l'autre, celui qui est fermé, il y a des cartons de
+        déménagement, des coffres en plastique  et des déchets électriques
+        destinés au recyclage
+    </description>
+
+    <action>regarder</action>
+
+    <goto name="compartiment droit" place="garagedroit">
+        <alias name="droit"/>
+        <alias name="moto" />
+    </goto>
+
+    <goto name="compartiment gauche" place="garagegauche" />
+</place>
