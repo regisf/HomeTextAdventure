@@ -1,11 +1,11 @@
-package org.clirpg;
+package org.homerpg;
 
-import org.clirpg.content.Action;
-import org.clirpg.content.Goto;
+import org.homerpg.content.Action;
+import org.homerpg.content.Goto;
 
 import java.util.List;
 
-public abstract class IContent {
+public class Content {
     private List<Action> actions;
     private String name;
     private String description;

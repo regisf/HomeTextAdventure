@@ -1,4 +1,4 @@
-package org.clirpg;
+package org.homerpg;
 
 public class CliRPG {
     public static void main(String[] args) {

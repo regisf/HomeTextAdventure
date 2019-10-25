@@ -1,4 +1,4 @@
-package org.clirpg.content;
+package org.homerpg.content;
 
 import java.util.ArrayList;
 import java.util.List;

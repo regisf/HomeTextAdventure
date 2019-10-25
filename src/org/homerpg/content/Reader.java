@@ -1,8 +1,7 @@
-package org.clirpg.content;
+package org.homerpg.content;
 
-import org.clirpg.IContent;
-import org.clirpg.PlaceContent;
-import org.clirpg.Resources;
+import org.homerpg.Content;
+import org.homerpg.Resources;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -19,7 +18,7 @@ public class Reader {
         fullPath = Resources.getInstance().getFromFilename(filename);
     }
 
-    public IContent readContent() {
+    public Content readContent() {
         Document document = openDocument();
 
         String name = document.getName();
@@ -27,7 +26,7 @@ public class Reader {
         List<Action> actions = document.getActions();
         List<Goto> gotos = document.getGotos();
 
-        PlaceContent content = new PlaceContent();
+        Content content = new Content();
         content.setName(name);
         content.setDescription(description);
         content.setActions(actions);

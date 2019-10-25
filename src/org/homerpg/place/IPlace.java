@@ -1,22 +1,22 @@
-package org.clirpg.place;
+package org.homerpg.place;
 
-import org.clirpg.IContent;
-import org.clirpg.content.Action;
-import org.clirpg.content.Goto;
-import org.clirpg.content.Item;
+import org.homerpg.Content;
+import org.homerpg.content.Action;
+import org.homerpg.content.Goto;
+import org.homerpg.content.Item;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class IPlace {
-    private IContent content;
+    private Content content;
     private String destination;
 
-    public IContent getContent() {
+    public Content getContent() {
         return content;
     }
 
-    void setContent(IContent content) {
+    void setContent(Content content) {
         this.content = content;
     }
 

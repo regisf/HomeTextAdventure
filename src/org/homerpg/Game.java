@@ -1,8 +1,8 @@
-package org.clirpg;
+package org.homerpg;
 
-import org.clirpg.place.Front;
-import org.clirpg.place.Garage;
-import org.clirpg.place.IPlace;
+import org.homerpg.place.Front;
+import org.homerpg.place.Garage;
+import org.homerpg.place.IPlace;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class Game {
+class Game {
     private IPlace currentRoom;
 
     void run() {
@@ -64,7 +64,6 @@ public class Game {
             changePlace(dest);
         }
     }
-
 
     /**
      * Display the how to use informaiton

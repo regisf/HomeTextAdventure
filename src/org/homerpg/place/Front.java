@@ -1,6 +1,6 @@
-package org.clirpg.place;
+package org.homerpg.place;
 
-import org.clirpg.content.Reader;
+import org.homerpg.content.Reader;
 
 public class Front extends IPlace {
     public Front() {

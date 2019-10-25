@@ -1,4 +1,4 @@
-package org.clirpg;
+package org.homerpg;
 
 public class Character {
     private String name;
