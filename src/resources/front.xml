@@ -18,6 +18,12 @@
             Que voulez vous regarder ?
         </default>
 
+        <item name="balcon">
+            Il n'y a rien  sur le balcon. On peut y accéder par une
+            porte fenêtre actuellement fermée. On ne peut rien voir par la
+            porte fenêtre.
+        </item>
+
         <item name="garage">
             Le garage se trouve à une courte distance. Un petit chemin de
             pierre serpente dans le gazon pour s'y rendre.

@@ -1,9 +1,5 @@
 package org.homerpg;
 
-import org.homerpg.place.Front;
-import org.homerpg.place.Garage;
-import org.homerpg.place.IPlace;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 class Game {
-    private IPlace currentRoom;
+    private Place currentPlace = new Place();
 
     void run() {
 
@@ -28,7 +24,7 @@ class Game {
                 quit = "quitter".equals(action);
 
                 if ("description".equals(action)) {
-                    currentRoom.display();
+                    currentPlace.display();
                 } else {
                     doAction(action);
                 }
@@ -52,11 +48,11 @@ class Game {
             System.out.println("    revenir");
             System.out.println("    quitter");
 
-            currentRoom.displayHelp();
+            currentPlace.displayHelp();
         } else {
-            currentRoom.doAction(action);
+            currentPlace.doAction(action);
 
-            String dest = currentRoom.getDestination();
+            String dest = currentPlace.getDestination();
             if (dest == null) {
                 return;
             }
@@ -88,21 +84,8 @@ class Game {
      */
     private void changePlace(final String where) {
         System.out.println(where);
-        switch (where) {
-            case "front":
-                currentRoom = new Front();
-                break;
 
-            case "garage":
-                currentRoom = new Garage();
-                break;
-
-            default:
-                System.err.println("Ceci n'est pas encore implémenter");
-                return;
-
-        }
-
-        currentRoom.display();
+        currentPlace.changePlace(where);
+        currentPlace.display();
     }
 }

@@ -1,14 +1,15 @@
-package org.homerpg.place;
+package org.homerpg;
 
 import org.homerpg.Content;
 import org.homerpg.content.Action;
 import org.homerpg.content.Goto;
 import org.homerpg.content.Item;
+import org.homerpg.content.Reader;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class IPlace {
+public class Place {
     private Content content;
     private String destination;
 
@@ -94,5 +95,10 @@ public abstract class IPlace {
 
     public String getDestination() {
         return destination;
+    }
+
+    public void changePlace(final String where) {
+        Reader reader = new Reader("front");
+        setContent(reader.readContent());
     }
 }
