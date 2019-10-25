@@ -1,5 +1,6 @@
 package org.clirpg.content;
 
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -13,20 +14,23 @@ class ActionParser {
 
         action.setName(getName());
         action.setVisible(getIsVisible());
-        action.setDescription(getDescription());
 
         NodeList children = node.getChildNodes();
         for (int j = 0; j < children.getLength(); j++) {
             final Node item = children.item(j);
 
             if ("default".equals(item.getNodeName())) {
-                String description = getDescription();
-                action.setDescription(description);
+                String description = getDefaultAction(item);
+                action.setDefaultAction(description);
             } else if ("item".equals(item.getNodeName())) {
                 Item actionItem = Item.fromNode(item);
                 action.addItem(Item.fromNode(item));
             }
         }
+    }
+
+    private String getDefaultAction(final Node node) {
+        return node.getTextContent().trim();
     }
 
     /**
@@ -48,20 +52,6 @@ class ActionParser {
                 .getAttributes()
                 .getNamedItem("name")
                 .getTextContent();
-    }
-
-    /**
-     * Get the default description from the default or empty string
-     *
-     * @return The default description or empty string
-     */
-    private String getDescription() {
-        Node attr = node.getAttributes().getNamedItem("default");
-        if (attr == null) {
-            return "";
-        }
-
-        return attr.getTextContent();
     }
 
     /**

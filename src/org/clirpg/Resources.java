@@ -1,7 +1,7 @@
 package org.clirpg;
 
 public class Resources {
-    private static Resources resouces = null;
+    private static Resources resources = null;
     private String baseDir = "";
 
     private Resources() {
@@ -14,19 +14,19 @@ public class Resources {
     }
 
     public static Resources getInstance() {
-        if (resouces == null) {
-            resouces = new Resources();
+        if (resources == null) {
+            resources = new Resources();
         }
 
-        return resouces;
+        return resources;
     }
 
-    public String getMainTitleFilename() {
+    String getMainTitleFilename() {
         return baseDir + "main.txt";
     }
 
-    public String getFronFilename() {
-        return baseDir + "front.xml";
+    public String getFromFilename(final String filename) {
+        return baseDir + filename + ".xml";
     }
 
 }

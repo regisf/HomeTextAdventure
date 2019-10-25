@@ -2,17 +2,22 @@
 <place>
     <name>Fronton de la maison</name>
     <description>
-
         Vous êtes devant la maison. Une allée de bitume va vers l'entrée de
         la maison. Il y a un petit puit condamné surmonté d'un toit en tuile
         d'argile a gauche et une haie à gauche.
+
         Juste derrière la haie, un pommier aux pommes bien mure surplombe
         légèrement l'allée lui donnant un peu d'ombre.
+
         Au bout de l'allée, il y a une porte d'entrée en verre. Plus loin,
         à gauche, un garage.
     </description>
 
     <action name="regarder">
+        <default>
+            Que voulez vous regarder ?
+        </default>
+
         <item name="garage">
             Le garage se trouve à une courte distance. Un petit chemin de
             pierre serpente dans le gazon pour s'y rendre.
@@ -20,11 +25,25 @@
         </item>
 
         <item name="porte">
-            C'est une bête porte vitrée.
+            C'est une bête porte vitrée, et vous êtes trop loin pour en voir
+            plus. Cependant, derrière les voilages, on peut distinguer quelques
+            meubles.
+        </item>
+
+        <item name="maison">
+            C'est une jolie maison tout en longueur de style basque. Il y a un
+            étage duquel sort un balcon qui protège de la pluie la porte
+            vitrée.
+        </item>
+
+        <item name="puit">
+            C'est un joli petit puit qui visiblement ne sert plus qu'à la
+            décoration. Il est bouché par un grillage. Le puit est protégé par
+            un petit toit qui ne sert plus qu'à protéger une lanterne.
         </item>
     </action>
 
-    <action name="ouvrir" visible="no">
+    <action name="ouvrir">
         <default>
             Vous voulez ouvrir quoi ?
         </default>
@@ -34,11 +53,10 @@
         </item>
     </action>
 
-    <goto name="porte" place="FrontDoor">
+    <goto name="porte" place="porte">
         <alias name="porte d'entree"/>
-        <alias name="nothing"/>
     </goto>
 
-    <goto name="garage" place="Garage"/>
+    <goto name="garage" place="garage"/>
 
 </place>

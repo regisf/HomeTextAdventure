@@ -10,3 +10,4 @@ ___  ___        _   _                       ____________ _____
 Bienvenue dans "My House RPG" vous devez trouvez votre quête et la réaliser
 pour gagner.
 
+Si vous souhaitez de l'aide, tapez : "aide" ou "?"

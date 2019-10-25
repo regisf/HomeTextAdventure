@@ -10,7 +10,26 @@
         destinés au recyclage
     </description>
 
-    <action>regarder</action>
+    <action name="regarder">
+        <default>regarder</default>
+
+        <item name="moto">
+            C'est une Suzuki DL 650 VStrom XT rouge avec un top-case.
+        </item>
+
+        <item name="gauche">
+            <alias name="truc" />
+            Vous ne pouvez pas voir grand chose. Une double porte fermée par un
+            cadenas vous barre la vue. Vous pouvez distinguer des cartons de
+            déménagement et des coffres de rangement en plastiques.
+
+            Ah oui ! Il y a une autre moto dans ce compartiment.
+        </item>
+
+        <item name="droit">
+            C'est à droite
+        </item>
+    </action>
 
     <goto name="compartiment droit" place="garagedroit">
         <alias name="droit"/>
@@ -18,4 +37,6 @@
     </goto>
 
     <goto name="compartiment gauche" place="garagegauche" />
+
+    <goto name="front" place="Front" goback="true" />
 </place>

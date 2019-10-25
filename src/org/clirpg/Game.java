@@ -6,6 +6,7 @@ import org.clirpg.place.IPlace;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -13,25 +14,25 @@ public class Game {
     private IPlace currentRoom;
 
     void run() {
+
         Resources.getInstance();
 
-        hello();
-        currentRoom = new Front(this);
-        currentRoom.display();
+        displayIntroduction();
 
-        while (true) {
+        changePlace("front");
 
+        boolean quit = false;
+        while (!quit) {
             String action = waitForUser();
-            if ("quitter".equals(action)) {
-                break;
-            } else if ("description".equals(action)) {
-                currentRoom.display();
-                continue;
+            if (!action.isEmpty()) {
+                quit = "quitter".equals(action);
+
+                if ("description".equals(action)) {
+                    currentRoom.display();
+                } else {
+                    doAction(action);
+                }
             }
-
-
-            doAction(action);
-            currentRoom.doAction(action);
         }
 
         System.out.println("Je vous souhaite une bonne journée.");
@@ -48,7 +49,36 @@ public class Game {
     private void doAction(final String action) {
         if ("?".equals(action) || "aide".equals(action)) {
             System.out.println("Actions disponible:");
+            System.out.println("    revenir");
             System.out.println("    quitter");
+
+            currentRoom.displayHelp();
+        } else {
+            currentRoom.doAction(action);
+
+            String dest = currentRoom.getDestination();
+            if (dest == null) {
+                return;
+            }
+
+            changePlace(dest);
+        }
+    }
+
+
+    /**
+     * Display the how to use informaiton
+     */
+    private void displayIntroduction() {
+        try {
+            String title = Resources.getInstance().getMainTitleFilename();
+            Path path = Paths.get(title);
+            String content = Files.readString(path);
+
+            System.out.println(content);
+        } catch (IOException e) {
+            System.err.println("Erreur. impossible de lire le fichier main.txt");
+            System.exit(1);
         }
     }
 
@@ -57,37 +87,23 @@ public class Game {
      *
      * @param where Where to go.
      */
-    public void goTo(final String where) {
+    private void changePlace(final String where) {
+        System.out.println(where);
         switch (where) {
+            case "front":
+                currentRoom = new Front();
+                break;
+
             case "garage":
-                currentRoom = new Garage(this);
+                currentRoom = new Garage();
                 break;
 
             default:
-                System.out.println("I don't know the place '" + where + "'");
+                System.err.println("Ceci n'est pas encore implémenter");
                 return;
+
         }
 
         currentRoom.display();
-    }
-
-    /**
-     * Display the how to use informaiton
-     */
-    private void hello() {
-        try {
-            String content = Files.readString(
-                    Paths.get(
-                            Resources
-                                    .getInstance()
-                                    .getMainTitleFilename()
-                    )
-            );
-
-            System.out.println(content);
-        } catch (IOException e) {
-            System.err.println("Erreur. impossible de lire le fichier main.txt");
-            System.exit(1);
-        }
     }
 }

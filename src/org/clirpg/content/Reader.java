@@ -1,5 +1,6 @@
 package org.clirpg.content;
 
+import org.clirpg.IContent;
 import org.clirpg.PlaceContent;
 import org.clirpg.Resources;
 import org.xml.sax.SAXException;
@@ -15,20 +16,22 @@ public class Reader {
     private String fullPath;
 
     public Reader(final String filename) {
-        fullPath = Resources.getInstance().getFronFilename();
+        fullPath = Resources.getInstance().getFromFilename(filename);
     }
 
-    public PlaceContent readContent() {
+    public IContent readContent() {
         Document document = openDocument();
 
         String name = document.getName();
         String description = document.getDescription();
         List<Action> actions = document.getActions();
+        List<Goto> gotos = document.getGotos();
 
         PlaceContent content = new PlaceContent();
         content.setName(name);
         content.setDescription(description);
         content.setActions(actions);
+        content.setGotos(gotos);
 
         return content;
     }
