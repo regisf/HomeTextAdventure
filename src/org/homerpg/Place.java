@@ -1,6 +1,5 @@
 package org.homerpg;
 
-import org.homerpg.Content;
 import org.homerpg.content.Action;
 import org.homerpg.content.Goto;
 import org.homerpg.content.Item;
@@ -17,18 +16,18 @@ public class Place {
         return content;
     }
 
-    void setContent(Content content) {
+    private void setContent(Content content) {
         this.content = content;
     }
 
     /**
      * Display the main description
      */
-    public void display() {
+    void display() {
         System.out.println(getContent().getDescription());
     }
 
-    public void displayHelp() {
+    void displayHelp() {
         List<Action> actions = getContent().getActions();
 
         for (final Action action : actions) {
@@ -38,7 +37,7 @@ public class Place {
         }
     }
 
-    public void doAction(String action) {
+    void doAction(String action) {
         setDestination(null);
 
         String[] tokens = action.split("\\s");
@@ -50,33 +49,43 @@ public class Place {
         }
 
         if ("aller".equals(verb)) {
-            List<Goto> gotos = getContent().getGotos();
-            for (Goto gto : gotos) {
-                if (gto.hasDestination(destination)) {
-                    setDestination(gto.getDestination());
-                    break;
-                }
+            boolean found = foundGoto(destination);
+            if (!found) {
+                System.out.println("Je ne sais pas aller ver \"" + destination + "\"");
             }
         } else if ("revenir".equals(verb)) {
             System.err.println("Pas encore implémentée");
         } else {
-            List<Action> actions = getContent().getActions();
-
-            for (final Action act : actions) {
-                if (act.getName().equals(verb)) {
-                    if (destination.isEmpty()) {
-                        System.out.println(act.getDefaultAction());
-                    } else {
-                        String desc = getDescriptionFromDestination(act, destination);
-                        System.out.println(desc);
-                    }
-                }
-            }
+            String description = getPlaceDescription(verb);
+            System.out.println(description);
         }
     }
 
-    private void setDestination(String dest) {
-        destination = dest;
+    private String getPlaceDescription(final String verb) {
+        List<Action> actions = getContent().getActions();
+
+        for (final Action act : actions) {
+            if (act.getName().equals(verb)) {
+                if (destination.isEmpty()) {
+                    return act.getDefaultAction();
+                } else {
+                    return getDescriptionFromDestination(act, destination);
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private boolean foundGoto(String destination) {
+        List<Goto> gotos = getContent().getGotos();
+        for (Goto gto : gotos) {
+            if (gto.hasDestination(destination)) {
+                setDestination(gto.getDestination());
+                return true;
+            }
+        }
+        return false;
     }
 
     private String getDescriptionFromDestination(final Action act,
@@ -93,11 +102,15 @@ public class Place {
                 : result.get(0).getDescription();
     }
 
-    public String getDestination() {
+    String getDestination() {
         return destination;
     }
 
-    public void changePlace(final String where) {
+    private void setDestination(String dest) {
+        destination = dest;
+    }
+
+    void changePlace(final String where) {
         Reader reader = new Reader("front");
         setContent(reader.readContent());
     }
