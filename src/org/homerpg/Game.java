@@ -83,8 +83,6 @@ class Game {
      * @param where Where to go.
      */
     private void changePlace(final String where) {
-        System.out.println(where);
-
         currentPlace.changePlace(where);
         currentPlace.display();
     }
