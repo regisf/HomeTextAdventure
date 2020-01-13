@@ -16,40 +16,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg.content;
+package main.java.org.homerpg;
 
-import java.util.List;
+public class Resources {
+    private static Resources resources = null;
+    private String baseDir = "";
 
-public class Goto {
-    private String name;
-    private String destination;
-    private List<String> aliases;
-
-    public void setName(String name) {
-        this.name = name;
+    private Resources() {
+        String thisFile = Resources.class.getResource("Resources.class").toString();
+        if (thisFile.startsWith("jar:")) {
+            baseDir = "resources/";
+        } else {
+            baseDir = "src/resources/";
+        }
     }
 
-    public String getName() {
-        return name;
+    public static Resources getInstance() {
+        if (resources == null) {
+            resources = new Resources();
+        }
+
+        return resources;
     }
 
-    void setAliases(List<String> aliases) {
-        this.aliases = aliases;
+    String getMainTitleFilename() {
+        return baseDir + "main.txt";
     }
 
-    public List<String> getAliases() {
-        return aliases;
+    public String getFromFilename(final String filename) {
+        return baseDir + filename + ".xml";
     }
 
-    void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public boolean hasDestination(String name) {
-        return getName().equals(name) || getAliases().contains(name);
-    }
 }

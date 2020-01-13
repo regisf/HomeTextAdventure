@@ -16,16 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg;
+package main.java.org.homerpg;
 
-public class Character {
-    private String name;
+import java.util.ArrayList;
+import java.util.List;
 
-    public String getName() {
-        return name;
-    }
+public class Utils {
+    public static String removeSpacesOfEachLines(final String[] content) {
+        List<String> result = new ArrayList<>();
 
-    public void setName(String name) {
-        this.name = name;
+        for (String line : content)  {
+            result.add(line.trim());
+        }
+
+        return String.join("\n", result);
     }
 }

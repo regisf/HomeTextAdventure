@@ -16,22 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg;
+package main.java.org.homerpg;
 
-import org.jetbrains.annotations.NotNull;
+public class Character {
+    private String name;
 
-import java.util.ArrayList;
-import java.util.List;
+    public String getName() {
+        return name;
+    }
 
-public class Utils {
-    @NotNull
-    public static String removeSpacesOfEachLines(final String[] content) {
-        List<String> result = new ArrayList<>();
-
-        for (String line : content)  {
-            result.add(line.trim());
-        }
-
-        return String.join("\n", result);
+    public void setName(String name) {
+        this.name = name;
     }
 }

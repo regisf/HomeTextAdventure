@@ -16,15 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg.content;
+package main.java.org.homerpg.content;
 
-import org.homerpg.Utils;
+import main.java.org.homerpg.Utils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Document parse the
+ */
 class Document {
     private final org.w3c.dom.Document document;
 
@@ -57,6 +60,7 @@ class Document {
         for (int i = 0; i < actionNodes.getLength(); i++) {
             final Node actionNode = actionNodes.item(i);
             ActionParser actionParser = new ActionParser(actionNode);
+            actionParser.parse();
             actions.add(actionParser.getAction());
         }
 

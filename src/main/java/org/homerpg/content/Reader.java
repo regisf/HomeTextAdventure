@@ -16,10 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg.content;
+package main.java.org.homerpg.content;
 
-import org.homerpg.Content;
-import org.homerpg.Resources;
+import main.java.org.homerpg.Content;
+import main.java.org.homerpg.Resources;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;

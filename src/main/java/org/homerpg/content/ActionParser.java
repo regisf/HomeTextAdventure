@@ -16,21 +16,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg.content;
+package main.java.org.homerpg.content;
 
+import main.java.org.homerpg.Utils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * Parse the XML file place
+ */
 class ActionParser {
     private final Node node;
     private Action action;
 
+    /**
+     * Parse an action tag
+     * @param actionNode The document Node
+     * @see Document
+     */
     ActionParser(final Node actionNode) {
         node = actionNode;
-        action = new Action();
+    }
 
+    /**
+     * Parse the the content
+     */
+    void parse() {
+        action = new Action();
         action.setName(getName());
         action.setVisible(getIsVisible());
+
 
         NodeList children = node.getChildNodes();
         for (int j = 0; j < children.getLength(); j++) {
@@ -46,9 +61,13 @@ class ActionParser {
         }
     }
 
-
+    /**
+     * Get from the default action from XML file if exists
+     * @param node The XML Node
+     * @return The default action
+     */
     private String getDefaultAction(final Node node) {
-        return node.getTextContent().trim();
+        return Utils.removeSpacesOfEachLines(node.getTextContent().split("\\n"));
     }
 
     /**

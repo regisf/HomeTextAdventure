@@ -16,18 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg.content;
+package main.java.org.homerpg.content;
 
-import org.homerpg.Utils;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import main.java.org.homerpg.Utils;
 import org.w3c.dom.Node;
 
 public class Item {
     private String name;
     private String description;
 
-    @NotNull
     static Item fromNode(final Node item) {
         Item actionItem = new Item();
         actionItem.setName(
@@ -40,7 +37,6 @@ public class Item {
         return actionItem;
     }
 
-    @Contract(pure = true)
     public final String getName() {
         return this.name;
     }
@@ -49,7 +45,6 @@ public class Item {
         this.name = name;
     }
 
-    @Contract(pure = true)
     public final String getDescription() {
         return this.description;
     }

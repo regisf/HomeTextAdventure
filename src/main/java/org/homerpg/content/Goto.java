@@ -16,11 +16,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg;
+package main.java.org.homerpg.content;
 
-public class HomeRPG {
-    public static void main(String[] args) {
-	    Game game = new Game();
-	    game.run();
+import java.util.List;
+
+public class Goto {
+    private String name;
+    private String destination;
+    private List<String> aliases;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    void setAliases(List<String> aliases) {
+        this.aliases = aliases;
+    }
+
+    public List<String> getAliases() {
+        return aliases;
+    }
+
+    void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public boolean hasDestination(String name) {
+        return getName().equals(name) || getAliases().contains(name);
     }
 }

@@ -16,35 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.homerpg;
+package main.java.org.homerpg;
 
-public class Resources {
-    private static Resources resources = null;
-    private String baseDir = "";
-
-    private Resources() {
-        String thisFile = Resources.class.getResource("Resources.class").toString();
-        if (thisFile.startsWith("jar:")) {
-            baseDir = "resources/";
-        } else {
-            baseDir = "src/resources/";
-        }
+public class HomeRPG {
+    public static void main(String[] args) {
+	    Game game = new Game();
+	    game.run();
     }
-
-    public static Resources getInstance() {
-        if (resources == null) {
-            resources = new Resources();
-        }
-
-        return resources;
-    }
-
-    String getMainTitleFilename() {
-        return baseDir + "main.txt";
-    }
-
-    public String getFromFilename(final String filename) {
-        return baseDir + filename + ".xml";
-    }
-
 }
