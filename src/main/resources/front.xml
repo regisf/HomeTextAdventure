@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <place>
     <name>
-        Fronton de la maison</name>
+        Fronton de la maison
+    </name>
+
     <description>
         Vous êtes devant la maison. Une allée de bitume va vers l'entrée de
-        la maison. Il y a un petit puit condamné surmonté d'un toit en tuile
+        la _maison_. Il y a un petit _puit_ condamné surmonté d'un toit en tuile
         d'argile a gauche et une haie à gauche.
 
-        Juste derrière la haie, un pommier aux pommes bien mure surplombe
-        légèrement l'allée lui donnant un peu d'ombre.
+        Juste derrière la haie, un pommier aux pommes bien mûres surplombe
+        légèrement l'_allée_ lui donnant un peu d'ombre.
 
-        Au bout de l'allée, il y a une porte d'entrée en verre. Plus loin,
-        à gauche, un garage.
+        Au bout de l'allée, il y a une _porte_ d'entrée surplombé d'un
+        balcon. Plus loin, à gauche, un garage.
     </description>
 
     <action name="regarder">
@@ -46,7 +48,7 @@
         <item name="puit">
             C'est un joli petit puit qui visiblement ne sert plus à rien,
             hormis à la décoration. Il est bouché par un grillage. Le puit est
-            protégé par un petit toit qui ne sert plus qu'à habriter une
+            protégé par un petit toit qui ne sert plus qu'à abriter une
             lanterne qui sert d'éclairage le soir.
         </item>
     </action>
@@ -66,5 +68,6 @@
     </goto>
 
     <goto name="garage" place="garage"/>
+    <goto name="puit" place="well" />
 
 </place>
