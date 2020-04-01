@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Place {
-    private PlaceContent placeContent;
-    private String destination;
+    private PlaceContent placeContent = null;
+    private String destination = null;
 
     public PlaceContent getPlaceContent() {
         return placeContent;
@@ -60,16 +60,16 @@ public class Place {
 
         String[] tokens = action.split("\\s");
         String verb = tokens[0];
-        String destination = "";
 
         if (tokens.length > 1) {
-            destination = tokens[1];
+            setDestination(tokens[1]);
         }
 
         if ("aller".equals(verb)) {
             boolean found = foundGoto(destination);
             if (!found) {
-                System.out.println("Je ne sais pas aller ver \"" + destination + "\"");
+                System.out.println("Je ne sais pas aller vers " +
+                        '"' + getDestination() + '"');
             }
         } else if ("revenir".equals(verb)) {
             System.err.println("Pas encore implémentée");
@@ -81,13 +81,14 @@ public class Place {
 
     private String getPlaceDescription(final String verb) {
         List<Action> actions = getPlaceContent().getActions();
+        String dest = getDestination();
 
         for (final Action act : actions) {
             if (act.getName().equals(verb)) {
-                if (destination.isEmpty()) {
+                if (dest == null || dest.isEmpty()) {
                     return act.getDefaultAction();
                 } else {
-                    return getDescriptionFromDestination(act, destination);
+                    return getDescriptionFromDestination(act);
                 }
             }
         }
@@ -95,10 +96,10 @@ public class Place {
         return null;
     }
 
-    private boolean foundGoto(String destination) {
+    private boolean foundGoto(String dest) {
         List<Goto> gotos = getPlaceContent().getGotos();
         for (Goto gto : gotos) {
-            if (gto.hasDestination(destination)) {
+            if (gto.hasDestination(dest)) {
                 setDestination(gto.getDestination());
                 return true;
             }
@@ -106,17 +107,15 @@ public class Place {
         return false;
     }
 
-    private String getDescriptionFromDestination(final Action act,
-                                                 final String destination) {
-        List<Item> items = act.getItems();
+    private String getDescriptionFromDestination(final Action act) {
         final List<Item> result = act
                 .getItems()
                 .stream()
-                .filter(item -> destination.equals(item.getName()))
+                .filter(item -> getDestination().equals(item.getName()))
                 .collect(Collectors.toList());
 
         return result.size() == 0
-                ? "Je n'ai pas compris \"" + destination + "\""
+                ? "Je n'ai pas compris \"" + getDestination() + "\""
                 : result.get(0).getDescription();
     }
 
@@ -129,7 +128,7 @@ public class Place {
     }
 
     void changePlace(final String where) {
-        Reader reader = new Reader("front");
+        Reader reader = new Reader(where);
         setPlaceContent(reader.readContent());
     }
 }
