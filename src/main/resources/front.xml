@@ -6,15 +6,35 @@
 
     <description>
         Vous êtes devant la maison. Une allée de bitume va vers l'entrée de
-        la _maison_. Il y a un petit _puit_ condamné surmonté d'un toit en tuile
-        d'argile a gauche et une haie à gauche.
+        la _maison_. Il y a un petit _puits_ condamné surmonté d'un toit en tuile
+        d'argile a gauche et une haie à droite.
 
         Juste derrière la haie, un pommier aux pommes bien mûres surplombe
         légèrement l'_allée_ lui donnant un peu d'ombre.
 
-        Au bout de l'allée, il y a une _porte_ d'entrée surplombé d'un
+        Au bout de l'allée, il y a une _porte_ d'entrée surplombée d'un
         balcon. Plus loin, à gauche, un garage.
     </description>
+
+    <action name="cueillir">
+        <default>
+            Que voulez vous cueillir ?
+        </default>
+
+        <item name="pomme">
+            Il faut d'abord aller près du pommier.
+        </item>
+    </action>
+
+    <action name="manger">
+        <default>
+            Que voulez vous manger ?
+        </default>
+
+        <item name="pomme">
+            Il faut d'abord cueillir une pomme non ?
+        </item>
+    </action>
 
     <action name="regarder">
         <default>
@@ -45,9 +65,9 @@
             porte vitrée de l'entrée principal.
         </item>
 
-        <item name="puit">
-            C'est un joli petit puit qui visiblement ne sert plus à rien,
-            hormis à la décoration. Il est bouché par un grillage. Le puit est
+        <item name="puits">
+            C'est un joli petit puits qui visiblement ne sert plus à rien,
+            hormis à la décoration. Il est bouché par un grillage. Le puits est
             protégé par un petit toit qui ne sert plus qu'à abriter une
             lanterne qui sert d'éclairage le soir.
         </item>
@@ -65,9 +85,11 @@
 
     <goto name="porte" place="porte">
         <alias name="porte d'entree"/>
+        <alias name="maison"/>
     </goto>
 
     <goto name="garage" place="garage"/>
-    <goto name="puit" place="well" />
+    <goto name="pommier" place="appletree" />
+    <goto name="puits" place="well" />
 
 </place>
