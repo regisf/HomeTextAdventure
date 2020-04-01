@@ -28,21 +28,21 @@ import java.util.List;
 /**
  * The Document parse the
  */
-class Document {
+public class PlaceDocument {
     private final org.w3c.dom.Document document;
 
-    Document(final org.w3c.dom.Document doc) {
+    PlaceDocument(final org.w3c.dom.Document doc) {
         document = doc;
     }
 
-    String getName() {
+    public String getName() {
         return document
                 .getElementsByTagName("name")
                 .item(0)
                 .getTextContent().trim();
     }
 
-    String getDescription() {
+    public String getDescription() {
         final String[] desc = document
                 .getElementsByTagName("description")
                 .item(0)
@@ -53,7 +53,7 @@ class Document {
         return Utils.removeSpacesOfEachLines(desc);
     }
 
-    List<Action> getActions() {
+    public List<Action> getActions() {
         final NodeList actionNodes = document.getElementsByTagName("action");
         List<Action> actions = new ArrayList<>();
 
@@ -67,7 +67,7 @@ class Document {
         return actions;
     }
 
-    List<Goto> getGotos() {
+    public List<Goto> getGotos() {
         final NodeList gotoNodes = document.getElementsByTagName("goto");
         List<Goto> gotos = new ArrayList<>();
 

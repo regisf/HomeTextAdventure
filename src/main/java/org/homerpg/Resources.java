@@ -18,19 +18,19 @@
 
 package org.homerpg;
 
+import java.net.URL;
+
+/**
+ * Manage the resource files
+ */
 public class Resources {
     private static Resources resources = null;
-    private String baseDir = "";
 
-    private Resources() {
-        String thisFile = Resources.class.getResource("Resources.class").toString();
-        if (thisFile.startsWith("jar:")) {
-            baseDir = "resources/";
-        } else {
-            baseDir = "src/resources/";
-        }
-    }
-
+    /**
+     * Create the resources object if it is not instancied yet
+     *
+     * @return The resources object
+     */
     public static Resources getInstance() {
         if (resources == null) {
             resources = new Resources();
@@ -39,12 +39,27 @@ public class Resources {
         return resources;
     }
 
-    String getMainTitleFilename() {
-        return baseDir + "main.txt";
+    /**
+     * Get the main file.
+     *
+     * @return The main file URL
+     */
+    URL getMainTitleFilename() {
+        return Resources.class
+                .getClassLoader()
+                .getResource("main.txt");
     }
 
-    public String getFromFilename(final String filename) {
-        return baseDir + filename + ".xml";
+    /**
+     * Construct the file path from its name
+     *
+     * @param filename The file name without extension
+     * @return The file path with extension
+     */
+    public URL getFromFilename(final String filename) {
+        return Resources.class
+                .getClassLoader()
+                .getResource(filename + ".xml");
     }
 
 }

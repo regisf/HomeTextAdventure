@@ -27,26 +27,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Place {
-    private Content content;
+    private PlaceContent placeContent;
     private String destination;
 
-    public Content getContent() {
-        return content;
+    public PlaceContent getPlaceContent() {
+        return placeContent;
     }
 
-    private void setContent(Content content) {
-        this.content = content;
+    private void setPlaceContent(PlaceContent placeContent) {
+        this.placeContent = placeContent;
     }
 
     /**
      * Display the main description
      */
     void display() {
-        System.out.println(getContent().getDescription());
+        System.out.println(getPlaceContent().getDescription());
     }
 
     void displayHelp() {
-        List<Action> actions = getContent().getActions();
+        List<Action> actions = getPlaceContent().getActions();
 
         for (final Action action : actions) {
             if (action.isVisible()) {
@@ -80,7 +80,7 @@ public class Place {
     }
 
     private String getPlaceDescription(final String verb) {
-        List<Action> actions = getContent().getActions();
+        List<Action> actions = getPlaceContent().getActions();
 
         for (final Action act : actions) {
             if (act.getName().equals(verb)) {
@@ -96,7 +96,7 @@ public class Place {
     }
 
     private boolean foundGoto(String destination) {
-        List<Goto> gotos = getContent().getGotos();
+        List<Goto> gotos = getPlaceContent().getGotos();
         for (Goto gto : gotos) {
             if (gto.hasDestination(destination)) {
                 setDestination(gto.getDestination());
@@ -130,6 +130,6 @@ public class Place {
 
     void changePlace(final String where) {
         Reader reader = new Reader("front");
-        setContent(reader.readContent());
+        setPlaceContent(reader.readContent());
     }
 }

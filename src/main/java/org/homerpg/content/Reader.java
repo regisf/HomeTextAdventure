@@ -18,8 +18,9 @@
 
 package org.homerpg.content;
 
-import org.homerpg.Content;
+import org.homerpg.PlaceContent;
 import org.homerpg.Resources;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -27,34 +28,47 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 public class Reader {
-    private String fullPath;
+    private final URL fullPath;
 
     public Reader(final String filename) {
         fullPath = Resources.getInstance().getFromFilename(filename);
     }
 
-    public Content readContent() {
-        Document document = openDocument();
+    /**
+     * Read a XML document and create a place content
+     *
+     * @return The place content
+     * @see PlaceContent
+     */
+    public PlaceContent readContent() {
+        PlaceDocument placeDocument = openDocument();
 
-        String name = document.getName();
-        String description = document.getDescription();
-        List<Action> actions = document.getActions();
-        List<Goto> gotos = document.getGotos();
-
-        Content content = new Content();
-        content.setName(name);
-        content.setDescription(description);
-        content.setActions(actions);
-        content.setGotos(gotos);
-
-        return content;
+        return PlaceContent.fromDocument(placeDocument);
     }
 
-    private Document openDocument() {
-        File file = new File(fullPath);
+    /**
+     * Open a XML document for a place
+     *
+     * @return A PlaceDocument
+     * @see PlaceDocument
+     */
+    private PlaceDocument openDocument() {
+        DocumentBuilder documentBuilder = createNewBuilder();
+        Document document = parseXMLDocument(documentBuilder);
+
+        return new PlaceDocument(document);
+    }
+
+    /**
+     * Create a new builder or exit
+     *
+     * @return The newly created builder
+     */
+    private DocumentBuilder createNewBuilder() {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
                 .newInstance();
 
@@ -68,15 +82,28 @@ public class Reader {
             System.exit(1);
         }
 
-        org.w3c.dom.Document document = null;
+        return documentBuilder;
+    }
+
+    /**
+     * Parse the XML document or exit on failure
+     *
+     * @param documentBuilder The document build as created in createNewBuilder
+     * @return The XML Document
+     * @see this.createNewBuilder
+     */
+    private Document parseXMLDocument(final DocumentBuilder documentBuilder) {
+        Document document = null;
+        File file = new File(fullPath.getPath());
+
         try {
             document = documentBuilder.parse(file);
         } catch (SAXException | IOException e) {
             System.err.println("An error occured. Unable to parse " +
-                    "the xml document");
+                    "the xml document because: " + e.getMessage());
             System.exit(1);
         }
 
-        return new Document(document);
+        return document;
     }
 }

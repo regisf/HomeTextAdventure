@@ -32,7 +32,7 @@ class ActionParser {
     /**
      * Parse an action tag
      * @param actionNode The document Node
-     * @see Document
+     * @see PlaceDocument
      */
     ActionParser(final Node actionNode) {
         node = actionNode;

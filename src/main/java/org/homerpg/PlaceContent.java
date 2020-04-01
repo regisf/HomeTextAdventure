@@ -20,14 +20,31 @@ package org.homerpg;
 
 import org.homerpg.content.Action;
 import org.homerpg.content.Goto;
+import org.homerpg.content.PlaceDocument;
 
 import java.util.List;
 
-public class Content {
+public class PlaceContent {
     private List<Action> actions;
     private String name;
     private String description;
     private List<Goto> gotos;
+
+    public static PlaceContent fromDocument(PlaceDocument placeDocument) {
+        String name = placeDocument.getName();
+        String description = placeDocument.getDescription();
+        List<Action> actions = placeDocument.getActions();
+        List<Goto> gotos = placeDocument.getGotos();
+
+
+        PlaceContent placeContent = new PlaceContent();
+        placeContent.setName(name);
+        placeContent.setDescription(description);
+        placeContent.setActions(actions);
+        placeContent.setGotos(gotos);
+
+        return placeContent;
+    }
 
     public List<Action> getActions() {
         return actions;

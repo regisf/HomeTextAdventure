@@ -19,23 +19,31 @@
 package org.homerpg;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/**
+ * The game class. Get the user input and manage the command
+ *
+ * @author Régis FLORET
+ */
 class Game {
-    private Place currentPlace = new Place();
+    private final Place currentPlace = new Place();
 
+    /**
+     * The game main loop
+     */
     void run() {
-
         Resources.getInstance();
-
         displayIntroduction();
-
         changePlace("front");
 
         boolean quit = false;
+
         while (!quit) {
             String action = waitForUser();
             if (!action.isEmpty()) {
@@ -52,6 +60,11 @@ class Game {
         System.out.println("Je vous souhaite une bonne journée.");
     }
 
+    /**
+     * Get the user keyboard input
+     *
+     * @return The user command line
+     */
     private String waitForUser() {
         System.out.println();
         System.out.print("Que voulez vous faire ? ~> ");
@@ -60,6 +73,11 @@ class Game {
         return scanner.nextLine();
     }
 
+    /**
+     * Perform the action entered by the user
+     *
+     * @param action The user command
+     */
     private void doAction(final String action) {
         if ("?".equals(action) || "aide".equals(action)) {
             System.out.println("Actions disponible:");
@@ -84,12 +102,12 @@ class Game {
      */
     private void displayIntroduction() {
         try {
-            String title = Resources.getInstance().getMainTitleFilename();
-            Path path = Paths.get(title);
+            URL title = Resources.getInstance().getMainTitleFilename();
+            Path path = Paths.get(title.toURI());
             String content = Files.readString(path);
 
             System.out.println(content);
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             System.err.println("Erreur. impossible de lire le fichier main.txt");
             System.exit(1);
         }

@@ -18,7 +18,15 @@
 
 package org.homerpg;
 
+/**
+ * Main entry class
+ */
 public class HomeRPG {
+    /**
+     * Entry point. Create and run the game
+     *
+     * @param args The command line arguments
+     */
     public static void main(String[] args) {
 	    Game game = new Game();
 	    game.run();
