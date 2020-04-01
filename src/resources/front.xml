@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <place>
-    <name>Fronton de la maison</name>
+    <name>
+        Fronton de la maison</name>
     <description>
         Vous êtes devant la maison. Une allée de bitume va vers l'entrée de
         la maison. Il y a un petit puit condamné surmonté d'un toit en tuile
@@ -21,7 +22,7 @@
         <item name="balcon">
             Il n'y a rien  sur le balcon. On peut y accéder par une
             porte fenêtre actuellement fermée. On ne peut rien voir par la
-            porte fenêtre.
+            porte fenêtre, un rideau cache la vue.
         </item>
 
         <item name="garage">
@@ -37,16 +38,16 @@
         </item>
 
         <item name="maison">
-            C'est une jolie maison tout en longueur de style basque. Il y a un
-            étage duquel sort un balcon qui protège de la pluie la porte
-            vitrée.
+            C'est une jolie maison tout en longueur de style basquo-landais.
+            Il y a un étage duquel sort un balcon qui protège de la pluie la
+            porte vitrée de l'entrée principal.
         </item>
 
         <item name="puit">
-            C'est un joli petit puit qui visiblement ne sert plus qu'à la
-            décoration. Il est bouché par un grillage. Le puit est protégé par
-            un petit toit qui ne sert plus qu'à habriter une lanterne qui sert
-            d'éclairage le soir.
+            C'est un joli petit puit qui visiblement ne sert plus à rien,
+            hormis à la décoration. Il est bouché par un grillage. Le puit est
+            protégé par un petit toit qui ne sert plus qu'à habriter une
+            lanterne qui sert d'éclairage le soir.
         </item>
     </action>
 

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package main.java.org.homerpg;
+package org.homerpg;
 
 import java.io.IOException;
 import java.nio.file.Files;

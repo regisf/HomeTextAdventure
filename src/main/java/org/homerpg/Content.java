@@ -16,10 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package main.java.org.homerpg;
+package org.homerpg;
 
-import main.java.org.homerpg.content.Action;
-import main.java.org.homerpg.content.Goto;
+import org.homerpg.content.Action;
+import org.homerpg.content.Goto;
 
 import java.util.List;
 

@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package main.java.org.homerpg.content;
+package org.homerpg.content;
 
-import main.java.org.homerpg.Utils;
+import org.homerpg.Utils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
