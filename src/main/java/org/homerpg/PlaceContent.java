@@ -36,7 +36,6 @@ public class PlaceContent {
         List<Action> actions = placeDocument.getActions();
         List<Goto> gotos = placeDocument.getGotos();
 
-
         PlaceContent placeContent = new PlaceContent();
         placeContent.setName(name);
         placeContent.setDescription(description);

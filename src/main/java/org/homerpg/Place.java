@@ -47,15 +47,18 @@ public class Place {
 
     void displayHelp() {
         List<Action> actions = getPlaceContent().getActions();
-
         for (final Action action : actions) {
             if (action.isVisible()) {
                 System.out.println("\t" + action.getName());
             }
         }
+
+        if (getPlaceContent().getGotos().size() > 0) {
+            System.out.println("    où aller ?");
+        }
     }
 
-    void doAction(String action) {
+    boolean doAction(String action) {
         setDestination(null);
 
         String[] tokens = action.split("\\s");
@@ -70,13 +73,42 @@ public class Place {
             if (!found) {
                 System.out.println("Je ne sais pas aller vers " +
                         '"' + getDestination() + '"');
+                return false;
             }
-        } else if ("revenir".equals(verb)) {
+            return true;
+        }
+
+        else if ("ou".equals(verb) && "aller".equals(destination)) {
+            doWhereToGo();
+        }
+
+        else if ("revenir".equals(verb)) {
             System.err.println("Pas encore implémentée");
-        } else {
+        }
+
+        else {
             String description = getPlaceDescription(verb);
             System.out.println(description);
         }
+
+        return false;
+    }
+
+    /**
+     * Seek all actions and display what to do
+     */
+    private void doWhereToGo() {
+        List<Goto> gotos = getPlaceContent().getGotos();
+        if (gotos.size() == 0) {
+            System.out.println("Vous n'avez nulle part où aller !");
+        }
+
+        System.out.println("Vous pouvez aller :");
+
+        for(final Goto gto : gotos) {
+            System.out.println("  → " + gto.getName());
+        }
+
     }
 
     private String getPlaceDescription(final String verb) {
