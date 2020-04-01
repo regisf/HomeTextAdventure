@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <place>
     <name>
-        Petit puit
+        Petit puits
     </name>
 
     <description>
-        C'est un joli petit puit qui visiblement ne sert plus à rien,
-        hormis à la décoration. Il est bouché par un _grillage_. Le puit est
+        C'est un joli petit puits qui visiblement ne sert plus à rien,
+        hormis à la décoration. Il est bouché par un _grillage_. Le puits est
         protégé par un petit _toit_ qui ne sert plus qu'à abriter une
         _lanterne_ qui sert d'éclairage le soir.
     </description>
@@ -31,7 +31,7 @@
 
             <item name="grillage">
                 Le grillage (probablement du grillage à poule) bouche l'entrée
-                du puit et permet d'éviter les accidents.
+                du puits et permet d'éviter les accidents.
             </item>
         </action>
     </action>

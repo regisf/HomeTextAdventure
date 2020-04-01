@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<place>
+    <name>Pommier</name>
+
+    <description>
+    </description>
+
+    <action></action>
+
+    <goto name="" place="">
+        <alias name=""/>
+        <alias name="" />
+    </goto>
+
+    <goto name="" place="" />
+</place>
