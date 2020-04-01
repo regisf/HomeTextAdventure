@@ -91,14 +91,18 @@ class Game {
 
             currentPlace.displayHelp();
         } else {
-            currentPlace.doAction(action);
+            boolean moveTo = currentPlace.doAction(action);
 
-            String dest = currentPlace.getDestination();
-            if (dest == null) {
-                return;
+            if (moveTo) {
+                String dest = currentPlace.getDestination();
+
+                if (dest == null) {
+                    return;
+                }
+
+                changePlace(dest);
             }
 
-            changePlace(dest);
         }
     }
 
