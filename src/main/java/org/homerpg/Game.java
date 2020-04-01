@@ -24,6 +24,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.Normalizer;
 import java.util.Scanner;
 
 /**
@@ -70,7 +71,11 @@ class Game {
         System.out.print("Que voulez vous faire ? ~> ");
         Scanner scanner = new Scanner(System.in);
 
-        return scanner.nextLine();
+        String action = scanner.nextLine().strip();
+
+        return Normalizer
+                .normalize(action, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "");
     }
 
     /**
