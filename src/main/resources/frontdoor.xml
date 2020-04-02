@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<place>
+    <name>La porte d'entrée</name>
+
+    <description>
+        La porte d'entrée
+    </description>
+
+    <action name="regarder">
+        <item name="porte">
+            C'est une porte
+        </item>
+
+        <item name="trappe">
+            C'est la trappe à chat
+        </item>
+
+        <item name="interieur">
+            On ne peut rien voir
+        </item>
+    </action>
+</place>

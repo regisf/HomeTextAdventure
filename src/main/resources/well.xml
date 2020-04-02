@@ -11,29 +11,34 @@
         _lanterne_ qui sert d'éclairage le soir.
     </description>
 
-    <action>
-        <action name="regarder">
-            <default>
-                Que voulez vous regarder ?
-            </default>
+    <action name="regarder">
+        <default>
+            Que voulez vous regarder ?
+        </default>
 
-            <item name="toit">
-                C'est un toit fait de tuile en terre cuite typique du Sud de
-                la France.
-            </item>
+        <item name="toit">
+            C'est un toit fait de tuile en terre cuite typique du Sud de
+            la France.
+        </item>
 
-            <item name="lanterne">
-                C'est une ancienne lampe à pétrole reconvertie en luminaire
-                électrique.  Le réservoir à pétrole est tout cabossé. Le verre
-                est cassé laissant une ampoule, visiblement de faible puissance
-                sans protection.
-            </item>
+        <item name="lanterne">
+            C'est une ancienne lampe à pétrole reconvertie en luminaire
+            électrique.  Le réservoir à pétrole est tout cabossé. Le verre
+            est cassé laissant une ampoule, visiblement de faible puissance
+            sans protection.
+        </item>
 
-            <item name="grillage">
-                Le grillage (probablement du grillage à poule) bouche l'entrée
-                du puits et permet d'éviter les accidents.
-            </item>
-        </action>
+        <item name="grillage">
+            Le grillage (probablement du grillage à poule) bouche l'entrée
+            du puits et permet d'éviter les accidents.
+        </item>
     </action>
+
+    <goto name="porte" place="frontdoor">
+        <alias name="porte d'entree"/>
+        <alias name="maison"/>
+    </goto>
+
+    <goto name="pommier" place="appletree" />
 
 </place>

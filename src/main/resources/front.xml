@@ -83,7 +83,7 @@
         </item>
     </action>
 
-    <goto name="porte" place="porte">
+    <goto name="porte" place="frontdoor">
         <alias name="porte d'entree"/>
         <alias name="maison"/>
     </goto>

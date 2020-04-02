@@ -3,14 +3,49 @@
     <name>Pommier</name>
 
     <description>
+        Vous êtes devant le pommier. Il n'est pas très beau, ses feuilles sont
+        pas très développées. Oui, il est un peu âgé, mais vaille que vaille,
+        il tient le choc.
+        Plusieurs pommes pendent aux branches.
     </description>
 
-    <action></action>
+    <action name="manger">
+        <default>
+            Que voulez vous manger ?
+        </default>
 
-    <goto name="" place="">
-        <alias name=""/>
-        <alias name="" />
+        <item name="pomme" required="cueillir">
+            Vous venez de manger une pomme certe pas très belle
+            mais succulante.
+
+            Humm ! C'est bon !
+        </item>
+    </action>
+
+    <action name="regarder">
+        <default>
+            Que voulez vous regarder ?
+        </default>
+        <item name="pomme">
+            Les pommes ne sont pas très belle. Ce ne sont pas ces magnifiques
+            pommes que l'on trouve chez le marchand mais elles semblent belle
+            et bien commestibles.
+        </item>
+    </action>
+
+    <action name="cueillir">
+        <default>
+            Que voulez vous manger ?
+        </default>
+        <item name="pomme">
+            Vous venez de cueillir une pomme. Elle n'est pas très belle, mais
+            la chair est ferme et elle semble gouleyante.
+        </item>
+    </action>
+
+    <goto name="porte" place="frontdoor">
+        <alias name="porte d'entree"/>
+        <alias name="maison"/>
     </goto>
 
-    <goto name="" place="" />
 </place>
