@@ -32,6 +32,7 @@ public class Item {
 
         final String content = Utils.removeSpacesOfEachLines(
                 item.getTextContent().split("\\n"));
+
         actionItem.setDescription(content);
 
         return actionItem;

@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 
 public class Place {
     private PlaceContent placeContent = null;
+    private PlaceContent lastPlace = null;
     private String destination = null;
 
     public PlaceContent getPlaceContent() {
@@ -56,6 +57,10 @@ public class Place {
         if (getPlaceContent().getGotos().size() > 0) {
             System.out.println("    où aller ?");
         }
+
+        if (getPlaceContent().getActions().size() > 0) {
+            System.out.println("    quoi faire ?");
+        }
     }
 
     boolean doAction(String action) {
@@ -69,21 +74,19 @@ public class Place {
         }
 
         if ("aller".equals(verb)) {
-            boolean found = foundGoto(destination);
-            if (!found) {
-                System.out.println("Je ne sais pas aller vers " +
-                        '"' + getDestination() + '"');
-                return false;
-            }
-            return true;
+            return doGoTo();
         }
 
         else if ("ou".equals(verb) && "aller".equals(destination)) {
             doWhereToGo();
         }
 
-        else if ("revenir".equals(verb)) {
-            System.err.println("Pas encore implémentée");
+        else if ("quoi".equals(verb) && "faire".equals(destination)) {
+            doWhatToDo();
+        }
+
+        else if ("revenir".equals(verb) || "retour".equals(verb)) {
+            doGoBack(verb);
         }
 
         else {
@@ -94,6 +97,45 @@ public class Place {
         return false;
     }
 
+    private boolean doGoTo() {
+        boolean found = foundGoto(getDestination());
+        if (!found) {
+            System.out.println("Je ne sais pas aller vers " +
+                    '"' + getDestination() + '"');
+            return false;
+        }
+        return true;
+    }
+
+    private void doGoBack(String verb) {
+        if (getLastPlace() == null) {
+            System.out.println("Vous ne pouvez pas revenir en arrière. " +
+                    "Vous êtes à votre point de départ.");
+        } else {
+            PlaceContent content = getPlaceContent();
+            setPlaceContent(getLastPlace());
+            setLastPlace(content);
+            System.out.println("Vous êtes maintenant : " +
+                    getPlaceContent().getName());
+        }
+    }
+
+    /**
+     * Display what the user may do regarding the actions
+     */
+    private void doWhatToDo() {
+        List<Action> actions = getPlaceContent().getActions();
+        if (actions.size() == 0) {
+            System.out.println("Vous ne pouvez rien faire");
+            return;
+        }
+
+        System.out.println("Vous pouvez utiliser ces actions :");
+        for(final Action action : actions) {
+            System.out.println("    " + action.getName());
+        }
+    }
+
     /**
      * Seek all actions and display what to do
      */
@@ -101,6 +143,7 @@ public class Place {
         List<Goto> gotos = getPlaceContent().getGotos();
         if (gotos.size() == 0) {
             System.out.println("Vous n'avez nulle part où aller !");
+            return;
         }
 
         System.out.println("Vous pouvez aller :");
@@ -125,7 +168,8 @@ public class Place {
             }
         }
 
-        return null;
+        return "Je ne comprends pas ce que vous voulez faire avec " +
+                '"' + verb + '"';
     }
 
     private boolean foundGoto(String dest) {
@@ -160,7 +204,17 @@ public class Place {
     }
 
     void changePlace(final String where) {
+        setLastPlace(getPlaceContent());
+
         Reader reader = new Reader(where);
         setPlaceContent(reader.readContent());
+    }
+
+    public PlaceContent getLastPlace() {
+        return lastPlace;
+    }
+
+    public void setLastPlace(PlaceContent lastPlace) {
+        this.lastPlace = lastPlace;
     }
 }
