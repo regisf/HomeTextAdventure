@@ -3,20 +3,38 @@
     <name>La porte d'entrée</name>
 
     <description>
-        La porte d'entrée
+        La porte d'entrée est vitrée. Des rideaux cachent l'intérieur. Le bas
+        de la porte est plein. Il y a une trappe à chat en bas.
+        Un paillasson permet aux visiteurs de s'essuyer les pieds.
     </description>
 
     <action name="regarder">
         <item name="porte">
-            C'est une porte
+            C'est un porte blanche en PVC. Le haut est vitré avec des
+            croisillons dans le double vitrage afin de faire comme une porte
+            à l'ancienne.
+            La porte est fermée avec une serrure. En bas, il y a une trappe à
+            chat
         </item>
 
         <item name="trappe">
-            C'est la trappe à chat
+            C'est la trappe à chat blanche électronique.
         </item>
 
         <item name="interieur">
-            On ne peut rien voir
+            On ne peut rien voir à l'intérieur, les rideaux bouchent la vue.
+        </item>
+
+        <item name="paillasson">
+            C'est un paillasson marron tout ce qu'il y a de plus classique. La
+            différence de couleur entre les brosses forme le mot : "Bienvenue"
         </item>
     </action>
+
+    <action name="ouvrir">
+        <item name="porte">
+            Todo
+        </item>
+    </action>
+
 </place>
