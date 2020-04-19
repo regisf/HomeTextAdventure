@@ -19,6 +19,7 @@
 package org.homerpg.content;
 
 import org.homerpg.Utils;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -29,9 +30,9 @@ import java.util.List;
  * The Document parse the
  */
 public class PlaceDocument {
-    private final org.w3c.dom.Document document;
+    private final Document document;
 
-    PlaceDocument(final org.w3c.dom.Document doc) {
+    PlaceDocument(final Document doc) {
         document = doc;
     }
 
@@ -55,7 +56,7 @@ public class PlaceDocument {
 
     public List<Action> getActions() {
         final NodeList actionNodes = document.getElementsByTagName("action");
-        List<Action> actions = new ArrayList<>();
+        final List<Action> actions = new ArrayList<>();
 
         for (int i = 0; i < actionNodes.getLength(); i++) {
             final Node actionNode = actionNodes.item(i);
@@ -69,7 +70,7 @@ public class PlaceDocument {
 
     public List<Goto> getGotos() {
         final NodeList gotoNodes = document.getElementsByTagName("goto");
-        List<Goto> gotos = new ArrayList<>();
+        final List<Goto> gotos = new ArrayList<>();
 
         for (int i = 0; i < gotoNodes.getLength(); i++) {
             Node gotoNode = gotoNodes.item(i);
