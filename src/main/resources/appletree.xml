@@ -14,7 +14,7 @@
             Que voulez vous manger ?
         </default>
 
-        <item name="pomme" required="cueillir">
+        <item name="pomme" required="manger">
             Vous venez de manger une pomme certe pas très belle
             mais succulante.
 
@@ -35,7 +35,7 @@
 
     <action name="cueillir">
         <default>
-            Que voulez vous manger ?
+            Que voulez vous cueillir ?
         </default>
         <item name="pomme">
             Vous venez de cueillir une pomme. Elle n'est pas très belle, mais
