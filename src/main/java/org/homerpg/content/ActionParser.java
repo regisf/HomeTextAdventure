@@ -55,8 +55,8 @@ class ActionParser {
                 String description = getDefaultAction(item);
                 action.setDefaultAction(description);
             } else if ("item".equals(item.getNodeName())) {
-                Item actionItem = Item.fromNode(item);
-                action.addItem(Item.fromNode(item));
+                ItemParser itemParser = new ItemParser(item);
+                action.addItem(itemParser.getItem());
             }
         }
     }

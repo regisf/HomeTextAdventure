@@ -25,19 +25,6 @@ public class Item {
     private String name;
     private String description;
 
-    static Item fromNode(final Node item) {
-        Item actionItem = new Item();
-        actionItem.setName(
-                item.getAttributes().getNamedItem("name").getTextContent());
-
-        final String content = Utils.removeSpacesOfEachLines(
-                item.getTextContent().split("\\n"));
-
-        actionItem.setDescription(content);
-
-        return actionItem;
-    }
-
     public final String getName() {
         return this.name;
     }
