@@ -29,7 +29,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 
 public class Reader {
     private final URL fullPath;
