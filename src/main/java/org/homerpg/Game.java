@@ -34,6 +34,7 @@ import java.util.Scanner;
  */
 class Game {
     private final Place currentPlace = new Place();
+    private final Player player = Player.getInstance();
 
     /**
      * The game main loop
