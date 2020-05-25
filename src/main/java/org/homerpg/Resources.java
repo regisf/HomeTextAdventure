@@ -18,6 +18,7 @@
 
 package org.homerpg;
 
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -39,15 +40,22 @@ public class Resources {
         return resources;
     }
 
+    InputStream getFileAsStream(final String name)  {
+        InputStream input = Resources.class.getResourceAsStream("/resources/" + name);
+        if (input == null) {
+            input = Resources.class.getClassLoader().getResourceAsStream(name);
+        }
+
+        return input;
+    }
+
     /**
      * Get the main file.
      *
-     * @return The main file URL
+     * @return The main file as stream
      */
-    URL getMainTitleFilename() {
-        return Resources.class
-                .getClassLoader()
-                .getResource("main.txt");
+    InputStream getMainTitleFilename() {
+        return getFileAsStream("main.txt");
     }
 
     /**
@@ -56,10 +64,8 @@ public class Resources {
      * @param filename The file name without extension
      * @return The file path with extension
      */
-    public URL getFromFilename(final String filename) {
-        return Resources.class
-                .getClassLoader()
-                .getResource(filename + ".xml");
+    public InputStream getFromFilename(final String filename) {
+        return getFileAsStream(filename + ".xml");
     }
 
 }

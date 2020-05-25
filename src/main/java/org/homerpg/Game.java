@@ -18,7 +18,10 @@
 
 package org.homerpg;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -26,6 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  * The game class. Get the user input and manage the command
@@ -110,16 +114,10 @@ class Game {
      * Display the how to use informaiton
      */
     private void displayIntroduction() {
-        try {
-            URL title = Resources.getInstance().getMainTitleFilename();
-            Path path = Paths.get(title.toURI());
-            String content = Files.readString(path);
-
-            System.out.println(content);
-        } catch (IOException | URISyntaxException e) {
-            System.err.println("Erreur. impossible de lire le fichier main.txt");
-            System.exit(1);
-        }
+        InputStream stream =  Resources.getInstance().getMainTitleFilename();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        String content = reader.lines().collect(Collectors.joining("\n"));
+        System.out.println(content);
     }
 
     /**

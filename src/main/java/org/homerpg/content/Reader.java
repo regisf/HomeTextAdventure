@@ -21,20 +21,21 @@ package org.homerpg.content;
 import org.homerpg.PlaceContent;
 import org.homerpg.Resources;
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 public class Reader {
-    private final URL fullPath;
+    private final InputStream inputStream;
 
     public Reader(final String filename) {
-        fullPath = Resources.getInstance().getFromFilename(filename);
+        inputStream = Resources.getInstance().getFromFilename(filename);
     }
 
     /**
@@ -93,10 +94,12 @@ public class Reader {
      */
     private Document parseXMLDocument(final DocumentBuilder documentBuilder) {
         Document document = null;
-        File file = new File(fullPath.getPath());
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String content = reader.lines().collect(Collectors.joining("\n"));
 
         try {
-            document = documentBuilder.parse(file);
+            document = documentBuilder.parse(new InputSource(new StringReader(content)));
         } catch (SAXException | IOException e) {
             System.err.println("An error occured. Unable to parse " +
                     "the xml document because: " + e.getMessage());
