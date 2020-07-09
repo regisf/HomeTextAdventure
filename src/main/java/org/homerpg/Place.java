@@ -92,7 +92,7 @@ public class Place {
         }
 
         else if ("revenir".equals(verb) || "retour".equals(verb)) {
-            doGoBack(verb);
+            doGoBack();
         }
 
         else {
@@ -113,7 +113,7 @@ public class Place {
         return true;
     }
 
-    private void doGoBack(String verb) {
+    private void doGoBack() {
         if (getLastPlace() == null) {
             System.out.println("Vous ne pouvez pas revenir en arrière. " +
                     "Vous êtes à votre point de départ.");
@@ -202,7 +202,7 @@ public class Place {
                 : result.get(0).getDescription();
     }
 
-    String getDestination() {
+    public String getDestination() {
         return destination;
     }
 
@@ -217,11 +217,11 @@ public class Place {
         setPlaceContent(reader.readContent());
     }
 
-    public PlaceContent getLastPlace() {
+    private PlaceContent getLastPlace() {
         return lastPlace;
     }
 
-    public void setLastPlace(PlaceContent lastPlace) {
+    private void setLastPlace(PlaceContent lastPlace) {
         this.lastPlace = lastPlace;
     }
 }
