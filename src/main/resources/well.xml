@@ -34,11 +34,23 @@
         </item>
     </action>
 
+    <action name="enlever">
+        <item name="grillage">
+            Impossible, il est scellé.
+        </item>
+    </action>
+
+    <action name="secouer">
+        <default>Secouer quoi?</default>
+        <item name="grillage">
+            Il tient bien le bougre. Impossible de le faire bouger !
+        </item>
+    </action>
+
     <goto name="porte" place="frontdoor">
         <alias name="porte d'entree"/>
         <alias name="maison"/>
     </goto>
 
     <goto name="pommier" place="appletree" />
-
 </place>
