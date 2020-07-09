@@ -43,7 +43,7 @@ class ActionParser {
      */
     void parse() {
         action = new Action();
-        action.setName(getName());
+        action.addName(getName());
         action.setVisible(getIsVisible());
 
 
@@ -51,12 +51,24 @@ class ActionParser {
         for (int j = 0; j < children.getLength(); j++) {
             final Node item = children.item(j);
 
-            if ("default".equals(item.getNodeName())) {
-                String description = getDefaultAction(item);
-                action.setDefaultAction(description);
-            } else if ("item".equals(item.getNodeName())) {
-                ItemParser itemParser = new ItemParser(item);
-                action.addItem(itemParser.getItem());
+            switch (item.getNodeName()) {
+                case "default":
+                    String description = getDefaultAction(item);
+                    action.setDefaultAction(description);
+                    break;
+
+                case "item":
+                    ItemParser itemParser = new ItemParser(item);
+                    action.addItem(itemParser.getItem());
+                    break;
+
+                case "alias":
+                    String aliasName = item.getAttributes().getNamedItem("name").getTextContent();
+                    action.addName(aliasName);
+                    break;
+
+                default:
+                    break;
             }
         }
     }

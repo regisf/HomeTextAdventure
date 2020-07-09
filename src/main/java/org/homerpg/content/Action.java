@@ -25,7 +25,7 @@ import java.util.List;
  * The Action class contains all necessary for an action.
  */
 public class Action {
-    private String name;
+    private List<String> names = new ArrayList<>();
     private String defaultAction = null;
     private boolean visible;
     private List<Item> items = new ArrayList<>();
@@ -34,16 +34,16 @@ public class Action {
      * Set the name of the action
      * @param name The name of the action
      */
-    public void setName(final String name) {
-        this.name = name;
+    public void addName(final String name) {
+        this.names.add(name);
     }
 
     /**
      * Get the name of the action
      * @return The action name
      */
-    public String getName() {
-        return name;
+    public List<String> getNames() {
+        return this.names;
     }
 
     /**
@@ -94,5 +94,14 @@ public class Action {
      */
     public String getDefaultAction() {
         return defaultAction;
+    }
+
+    /**
+     * Test if a verb is contained into the names list
+     * @param verb The verb to check
+     * @return True if the verb is into the names list. False elsewhere
+     */
+    public boolean contains(final String verb) {
+        return names.contains(verb);
     }
 }

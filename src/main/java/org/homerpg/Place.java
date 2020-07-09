@@ -50,7 +50,13 @@ public class Place {
         List<Action> actions = getPlaceContent().getActions();
         for (final Action action : actions) {
             if (action.isVisible()) {
-                System.out.println("\t" + action.getName());
+                System.out.print("\t");
+
+                for(String s : action.getNames()) {
+                    System.out.print(s + " ");
+                }
+
+                System.out.println();
             }
         }
 
@@ -132,7 +138,7 @@ public class Place {
 
         System.out.println("Vous pouvez utiliser ces actions :");
         for(final Action action : actions) {
-            System.out.println("    " + action.getName());
+            System.out.println("    " + action.getNames());
         }
     }
 
@@ -158,12 +164,12 @@ public class Place {
         List<Action> actions = getPlaceContent().getActions();
         String dest = getDestination();
 
-        for (final Action act : actions) {
-            if (act.getName().equals(verb)) {
+        for (final Action action : actions) {
+            if (action.contains(verb)) {
                 if (dest == null || dest.isEmpty()) {
-                    return act.getDefaultAction();
+                    return action.getDefaultAction();
                 } else {
-                    return getDescriptionFromDestination(act);
+                    return getDescriptionFromDestination(action);
                 }
             }
         }
