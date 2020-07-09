@@ -90,6 +90,6 @@
 
     <goto name="garage" place="garage"/>
     <goto name="pommier" place="appletree" />
-    <goto name="puits" place="well" />
+    <goto name="puit" place="well" />
 
 </place>
