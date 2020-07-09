@@ -167,7 +167,8 @@ public class Place {
         for (final Action action : actions) {
             if (action.contains(verb)) {
                 if (dest == null || dest.isEmpty()) {
-                    return action.getDefaultAction();
+                    String defaultAction = action.getDefaultAction();
+                    return (defaultAction == null) ? "Hein ?" : defaultAction;
                 } else {
                     return getDescriptionFromDestination(action);
                 }
