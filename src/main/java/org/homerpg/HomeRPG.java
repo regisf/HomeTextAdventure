@@ -18,6 +18,8 @@
 
 package org.homerpg;
 
+import java.io.IOException;
+
 /**
  * Main entry class
  */
@@ -29,6 +31,12 @@ public class HomeRPG {
      */
     public static void main(String[] args) {
 	    Game game = new Game();
-	    game.run();
+
+        try {
+            game.run();
+        } catch (IOException | Error e) {
+            System.err.println("Bye");
+            System.exit(0);
+        }
     }
 }

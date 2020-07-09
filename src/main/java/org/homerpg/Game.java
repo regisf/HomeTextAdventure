@@ -22,11 +22,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -39,12 +34,17 @@ import java.util.stream.Collectors;
 class Game {
     private final Place currentPlace = new Place();
     private final Player player = Player.getInstance();
+    private Character character = null;
 
     /**
      * The game main loop
      */
-    void run() {
+    void run() throws IOException, Error {
         Resources.getInstance();
+
+        Character character = Character.createFromUserEntry();
+        setCharacter(character);
+
         displayIntroduction();
         changePlace("front");
 
@@ -64,6 +64,10 @@ class Game {
         }
 
         System.out.println("Je vous souhaite une bonne journée.");
+    }
+
+    private void setCharacter(Character character) {
+        this.character = character;
     }
 
     /**
@@ -114,7 +118,7 @@ class Game {
      * Display the how to use informaiton
      */
     private void displayIntroduction() {
-        InputStream stream =  Resources.getInstance().getMainTitleFilename();
+        InputStream stream = Resources.getInstance().getMainTitleFilename();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String content = reader.lines().collect(Collectors.joining("\n"));
         System.out.println(content);

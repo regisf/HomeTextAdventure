@@ -18,8 +18,26 @@
 
 package org.homerpg;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Character {
+    private final Inventory inventory = new Inventory();
     private String name;
+
+    public static Character createFromUserEntry() throws IOException, Error {
+        System.out.print("Entrez votre nom de joueur : ");
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String name = reader.readLine();
+
+        if (name == null || name.isEmpty()) {
+            throw new Error();
+        }
+
+        return new Character();
+    }
 
     public String getName() {
         return name;
@@ -27,5 +45,9 @@ public class Character {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 }
