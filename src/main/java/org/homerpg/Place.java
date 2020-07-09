@@ -174,7 +174,7 @@ public class Place {
             }
         }
 
-        return "Je ne comprends pas ce que vous voulez faire avec " +
+        return "Je ne comprends pas ce que vous voulez dire avec " +
                 '"' + verb + '"';
     }
 
